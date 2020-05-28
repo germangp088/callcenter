@@ -7,11 +7,11 @@
     "build": "tsc -p ./api/tsconfig.json",
     "build:client": "react-scripts build",
     "dev:api": "nodemon ./dist/bin/server.js",
-    "dev": "concurrently \"npm run build\" \"npm run dev:api\" \"npm run start:client\"",
+    "dev": "concurrently \"npm run dev:api\" \"npm run start:client\"",
     "eject": "react-scripts eject",
     "lint": "eslint ./src --ext .js,.ts",
     "lint:fix": "eslint ./src --ext .js,.ts --fix",
-    "start": "concurrently \"npm run build\" \"npm run start:api\" \"npm run start:client\"",
+    "start": "concurrently \"npm run start:api\" \"npm run start:client\"",
     "start:api": "node ./dist/bin/server.js",
     "start:client": "react-scripts start"
   },

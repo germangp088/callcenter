@@ -20,5 +20,6 @@ $ npm install
 ### Run
 
 ```sh
+$ npm run build
 $ npm run start
 ```
