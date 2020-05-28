@@ -9,7 +9,7 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      response: null,
+      employee: null,
       loading: true,
       errorMessage: '',
       notFound: false
@@ -26,9 +26,9 @@ class Home extends React.Component {
       this.setState({
         loading: true
       });
-      const result = await getChat();
+      const employee = await getChat();
       this.setState({
-        response: result,
+        employee: employee,
         loading: false
       });
     } catch (error) {
@@ -54,7 +54,7 @@ class Home extends React.Component {
           { this.state.errorMessage && 'There was an error trying to retrieve information, come back later.'}
         </FormHelperText>
         {
-          this.state.notFound ? <Typography variant="h5" className="header-message">All our operators are busy, try again later.</Typography> : <Chat response={this.state.response} />
+          this.state.notFound ? <Typography variant="h5" className="header-message">All our operators are busy, try again later.</Typography> : <Chat employee={this.state.employee} />
         }
       </main>
     );

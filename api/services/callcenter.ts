@@ -11,7 +11,7 @@ export class CallCenterService {
 
     public chat() {
       const employees = this._callCenter.getEmployeesFormat()
-      let response: string = ''
+      let employee: any
 
       const getResponse = (employeeType: EmployeeType, employeeResponse: EmployeeResponse) => {
 
@@ -19,20 +19,20 @@ export class CallCenterService {
         
         if (index > -1) {
           this._callCenter.employees[index].available = false
-          return employeeResponse
+          return this._callCenter.employees[index].toObject()
         }
 
-        return ''
+        return null
       }
 
-      response = getResponse(EmployeeType.L1Op, EmployeeResponse.L1Op)
-      if(response === '') {
-        response = getResponse(EmployeeType.Supervisor, EmployeeResponse.Supervisor)
-        if(response === '') {
-          response = getResponse(EmployeeType.Manager, EmployeeResponse.Manager)
+      employee = getResponse(EmployeeType.L1Op, EmployeeResponse.L1Op)
+      if(!employee) {
+        employee = getResponse(EmployeeType.Supervisor, EmployeeResponse.Supervisor)
+        if(!employee) {
+          employee = getResponse(EmployeeType.Manager, EmployeeResponse.Manager)
         }
       }
-      return response
+      return employee
     }
 
     updateEmployees(request: any) {

@@ -11,6 +11,7 @@ export class Employee {
     constructor(employeeType: EmployeeType, response: string){
         this._id = uuid.v4()
         this._employeeType = employeeType
+        this._response = response
         this._available = true
     }
     
@@ -18,6 +19,7 @@ export class Employee {
         return {
             'id': this.id,
             'employeeType': this.employeeType,
+            'response': this.response,
             'available': this.available
         };
     }

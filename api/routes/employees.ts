@@ -16,14 +16,12 @@ router.put('/', validatePut, (req: express.Request, res: express.Response) => {
 })
 
 router.get('/chat', (req: express.Request, res: express.Response) => {
-  let response: string = ''
+  const employee = callCenterService.chat()
 
-  response = callCenterService.chat()
-
-  if (response == '') {
-    res.status(404).json('All our operators are busy, try again later.')
+  if (!employee) {
+    res.status(404).json()
   } else {
-    res.status(200).json(response)
+    res.status(200).json(employee)
   }
 })
 

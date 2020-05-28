@@ -35,15 +35,18 @@ const useStyles = makeStyles({
 
 const Chat = (props) => {
   const classes = useStyles();
+  const getTime = () => `${new Date().getHours()}:${new Date().getMinutes()}`;
 
+  const secondary = getTime();
   let img = '';
-  let type = '';
+  let type = ''
+  let response = ''
 
-  if(props.response ) {
-    img = props.response && props.response.includes('operator') ? 'operation.png' :
-    props.response.includes('supervisor') ? 'supervisor.png' :'manager.png';
-    type = props.response && props.response.includes('operator') ? 'L1 Operator' :
-    props.response.includes('supervisor') ? 'Supervisor' :'Manager'
+  if(props.employee) {
+    img = props.employee && props.employee.employeeType === 'Level 1 operator' ? 'operation.png' :
+    props.employee.employeeType === 'Supervisor' ? 'supervisor.png' :'Manager.png';
+    type = props.employee.employeeType
+    response = props.employee.response
   }
 
   return (
@@ -58,9 +61,7 @@ const Chat = (props) => {
                 <List>
                     <ListItem button key={type}>
                         <ListItemIcon>
-                        <Avatar alt={type}
-                        src={img}
-                        />
+                        <Avatar alt={type} src={img} />
                         </ListItemIcon>
                         <ListItemText primary={type}></ListItemText>
                     </ListItem>
@@ -71,10 +72,10 @@ const Chat = (props) => {
                     <ListItem key="1">
                         <Grid container>
                             <Grid item xs={12}>
-                                <ListItemText align="right" primary={props.response}></ListItemText>
+                                <ListItemText align="right" primary={response}></ListItemText>
                             </Grid>
                             <Grid item xs={12}>
-                                <ListItemText align="right" secondary={Date.now}></ListItemText>
+                                <ListItemText align="right" secondary={secondary}></ListItemText>
                             </Grid>
                         </Grid>
                     </ListItem>
